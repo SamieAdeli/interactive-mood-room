@@ -1,0 +1,368 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #080a12;
+  font-family: Arial, sans-serif;
+}
+
+.room {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 70% 35%, rgba(91, 103, 160, 0.2), transparent 30%),
+    linear-gradient(to bottom, #111522 0%, #090b12 65%, #05060a 100%);
+}
+
+/* Window */
+.window {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 360px;
+  height: 260px;
+  border: 10px solid #161924;
+  background: linear-gradient(#25334d, #0d1422);
+  box-shadow: 0 0 50px rgba(80, 110, 180, 0.18);
+}
+
+/* Desk */
+.desk {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 18%;
+  height: 30px;
+  background: #241d19;
+  border-radius: 6px;
+  box-shadow: 0 20px 30px rgba(0,0,0,.4);
+}
+
+/* Lamp */
+.lamp {
+  position: absolute;
+  left: 20%;
+  bottom: 21%;
+  width: 100px;
+  height: 180px;
+}
+
+.lamp-shade {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 80px;
+  height: 60px;
+  background: #d8b77a;
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0 100%);
+}
+
+.lamp-stand {
+  position: absolute;
+  width: 8px;
+  height: 100px;
+  left: 47px;
+  top: 55px;
+  background: #383838;
+}
+
+.lamp-glow {
+  position: absolute;
+  top: 30px;
+  left: -60px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(255,210,130,.25), transparent 70%);
+}
+
+/* Record Player */
+.record-player {
+  position: absolute;
+  left: 42%;
+  bottom: 22%;
+  width: 180px;
+  height: 80px;
+  border-radius: 8px;
+  background: #151515;
+  box-shadow: 0 15px 25px rgba(0,0,0,.4);
+}
+
+.record {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  left: 20px;
+  top: 8px;
+  border-radius: 50%;
+  background: repeating-radial-gradient(circle, #050505 0 3px, #171717 4px 6px);
+}
+
+/* Plant */
+.plant {
+  position: absolute;
+  right: 17%;
+  bottom: 20%;
+  width: 120px;
+  height: 180px;
+}
+
+.pot {
+  position: absolute;
+  bottom: 0;
+  left: 30px;
+  width: 60px;
+  height: 55px;
+  background: #60483c;
+  border-radius: 0 0 18px 18px;
+}
+
+.leaf {
+  position: absolute;
+  width: 45px;
+  height: 90px;
+  border-radius: 100% 0 100% 0;
+  background: #314d3d;
+  transform-origin: bottom;
+}
+
+.leaf-1 { left: 35px; bottom: 45px; transform: rotate(-20deg); }
+.leaf-2 { left: 50px; bottom: 50px; transform: rotate(25deg); }
+.leaf-3 { left: 20px; bottom: 55px; transform: rotate(-45deg); }
+.leaf-4 { left: 65px; bottom: 55px; transform: rotate(50deg); }
+
+/* UI */
+.hint {
+  position: absolute;
+  bottom: 6%;
+  width: 100%;
+  text-align: center;
+  color: rgba(255,255,255,.5);
+  font-size: 14px;
+}
+.window,
+.lamp,
+.record-player,
+.plant {
+  transition: transform 0.15s ease-out;
+}
+.room {
+  transition: background 0.8s ease;
+}
+
+.lamp-glow {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.lamp-off {
+  background:
+    linear-gradient(to bottom, #05060a 0%, #030407 100%);
+}
+
+.lamp-off .lamp-glow {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.lamp-off .window {
+  opacity: 0.65;
+}
+.record-player {
+  cursor: pointer;
+  transition: transform 0.15s ease-out;
+}
+
+.record {
+  transition: transform 0.5s ease;
+}
+
+.record-player.playing .record {
+  animation: spinRecord 2.5s linear infinite;
+}
+
+@keyframes spinRecord {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#visualizer {
+  position: absolute;
+  left: 95px;
+  top: 15px;
+  width: 70px;
+  height: 50px;
+  pointer-events: none;
+}
+
+.window {
+  overflow: hidden;
+  transition: transform 0.2s ease-out, box-shadow 0.5s ease;
+}
+
+.window:hover {
+  box-shadow: 0 0 80px rgba(100, 140, 210, 0.35);
+}
+
+.rain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.raindrop {
+  position: absolute;
+  top: -20px;
+  width: 1px;
+  height: 18px;
+  background: rgba(190, 220, 255, 0.45);
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  to {
+    transform: translateY(300px);
+  }
+}
+.lightning {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.lightning.flash {
+  animation: lightningFlash 0.35s ease-out;
+}
+
+@keyframes lightningFlash {
+  0% { opacity: 0; }
+  15% { opacity: 0.8; }
+  30% { opacity: 0.1; }
+  45% { opacity: 0.6; }
+  100% { opacity: 0; }
+}
+/* Door */
+.door-area {
+  position: absolute;
+  right: 5%;
+  bottom: 18%;
+  width: 190px;
+  height: 430px;
+  z-index: 5;
+}
+
+.door-frame {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background: #18161a;
+  box-shadow: inset 0 0 30px rgba(0,0,0,.7);
+  perspective: 1200px;
+}
+
+.door {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background:
+    linear-gradient(90deg, #211914, #4a3327, #211914);
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  box-shadow: 10px 0 25px rgba(0,0,0,.45);
+}
+
+.door::before {
+  content: "";
+  position: absolute;
+  inset: 30px 25px;
+  border: 2px solid rgba(190,160,120,.2);
+}
+
+.door-knob {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #c4a06a;
+  box-shadow: 0 0 10px rgba(196,160,106,.4);
+}
+
+/* Chair */
+.chair {
+  position: absolute;
+  left: 48%;
+  bottom: 18%;
+  width: 150px;
+  height: 190px;
+  z-index: 4;
+}
+
+.chair-back {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  width: 90px;
+  height: 105px;
+  border-radius: 12px 12px 5px 5px;
+  background: #30231e;
+}
+
+.chair-seat {
+  position: absolute;
+  left: 20px;
+  top: 90px;
+  width: 110px;
+  height: 28px;
+  border-radius: 8px;
+  background: #48342b;
+}
+
+.chair-leg {
+  position: absolute;
+  top: 115px;
+  width: 10px;
+  height: 75px;
+  background: #211814;
+}
+
+.leg-1 { left: 30px; }
+.leg-2 { right: 30px; }
+
+/* Visitor */
+.visitor {
+  position: absolute;
+  right: 13%;
+  bottom: 18%;
+  width: 250px;
+  z-index: 6;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visitor img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 20px rgba(0,0,0,.5));
+}
+.visitor img {
+  transform: scaleX(-1);
+}

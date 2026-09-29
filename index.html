@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Interactive Mood Room</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+</head>
+
+<body>
+<!-- Door -->
+<div class="door-area" id="doorArea">
+  <div class="door-frame">
+    <div class="door" id="door">
+      <div class="door-knob"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Chair -->
+<div class="chair" id="chair">
+  <div class="chair-back"></div>
+  <div class="chair-seat"></div>
+  <div class="chair-leg leg-1"></div>
+  <div class="chair-leg leg-2"></div>
+</div>
+
+<!-- Visitor -->
+<div class="visitor" id="visitor">
+  <img src="assets/visitor.png" alt="Visitor">
+</div>
+
+<audio id="knockSound" src="assets/knock.mp3"></audio>
+<audio id="footstepsSound" src="assets/footsteps.mp3"></audio>
+  <main class="room">
+
+    <!-- Window -->
+    <div class="window" id="window">
+  <div class="rain"></div>
+</div>
+
+<audio id="rainSound" src="assets/rain.mp3" loop></audio>
+<audio id="thunderSound" src="assets/thunder.mp3"></audio>
+
+<div class="lightning"></div>
+
+    <!-- Lamp -->
+    <div class="lamp" id="lamp">
+      <div class="lamp-glow"></div>
+      <div class="lamp-shade"></div>
+      <div class="lamp-stand"></div>
+    </div>
+
+    <!-- Desk -->
+    <div class="desk"></div>
+
+    <!-- Record Player -->
+    <div class="record-player" id="recordPlayer">
+  <div class="record"></div>
+  <div class="player-arm"></div>
+
+  <canvas id="visualizer"></canvas>
+</div>
+
+<audio id="music" src="assets/Hayede Sagh.mp3"></audio>
+
+    <!-- Plant -->
+    <div class="plant" id="plant">
+      <div class="pot"></div>
+      <div class="leaf leaf-1"></div>
+      <div class="leaf leaf-2"></div>
+      <div class="leaf leaf-3"></div>
+      <div class="leaf leaf-4"></div>
+    </div>
+
+    <!-- Room Atmosphere -->
+    <div class="ambient-light"></div>
+
+    <!-- UI -->
+    <div class="hint">
+      <span>Explore the room</span>
+    </div>
+
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
